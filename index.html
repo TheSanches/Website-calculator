@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Калькулятор + отправка данных на почту</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="main.js"></script>
+</head>
+
+<body>
+
+  <div class="wrapper">
+  
+  <div class="calc-feedback">
+    <div class="calc">
+      <div class="houses">
+        <p class='houses-p'>Выберите тип дома</p>
+        <span data-cost="15500" data-name='Усадьба'><img src="img/house-1.png" alt="houses"></span>
+        <span data-cost="10000" data-name='Дом дачного типа'><img src="img/house-2.png" alt="houses"></span>
+        <span data-cost="40343" data-name='Вилла'><img src="img/house-3.png" alt="houses"></span>
+        <span data-cost="30000" data-name='Коттедж'><img src="img/house-4.png" alt="houses"></span>
+      </div>
+      <div class="additionally">
+        <div class="floors">
+          <p>Этажи и комнаты</p>
+          <form action="">
+
+
+            <select name="floor" id="floor" class='floor'>
+              <option selected disabled>Количество этажей</option>
+              <option value="0">1</option>
+              <option value="35598">2</option>
+              <option value="67196">3</option>
+              <option value="98000">4</option>
+            </select>
+          </form>
+          <select name="room" id="room" class='room'>
+            <option selected disabled>Количество комнат</option>
+            <option value="5000">1</option>
+            <option value="8000">2</option>
+            <option value="11000">3</option>
+            <option value="14000">4</option>
+            <option value="17000">5</option>
+            <option value="20000">6</option>
+            <option value="23000">7</option>
+            <option value="25000">8</option>
+            <option value="28000">9</option>
+            <option value="31000">10</option>
+            <option value="33000">11</option>
+            <option value="36000">12</option>
+            <option value="39000">13</option>
+            <option value="42000">14</option>
+            <option value="44000">15</option>
+          </select>
+        </div>
+        <div class="fireplaces">
+          <p>Отопление и камин</p>
+          <select name="fireplace" id="fireplace" class='floor'>
+            <option selected disabled>Камин</option>
+            <option value="0">без камина</option>
+            <option value="40500">дровяной камин</option>
+            <option value="87000">газовый камин</option>
+            <option value="15000">электрический камин</option>
+            <option value="18400">биокамин</option>
+          </select>
+          <select name="heating" id="heating" class='floor'>
+            <option selected disabled>Вид отопления</option>
+            <option value="278799">водяное отопление</option>
+            <option value="52950">газовое отопление</option>
+            <option value="75189">электрическое отопление</option>
+            <option value="253200">воздушное отопление</option>
+          </select>
+        </div>
+      </div>
+      <div class="additionally">
+        <div class="bathroom">
+          <p>Санузел</p>
+          <input type="number" min='1' name="bathroom" id="bathroom" class='room' value='Количество санузлов'
+            placeholder="Количество санузлов">
+        </div>
+        <div class="garage">
+          <p>Гараж</p>
+          <div class="garage-true-false">
+            <input type="checkbox" name="garage-true" id="garage-true" onchange="garageNeed()">
+            <label class='garage-true-label' for="garage-true"></label>
+          </div>
+          <select name="garage-number" id="garage-number" class='floor'>
+            <option selected disabled>Количество гаражей</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+          </select>
+          <select name="garage" id="garage-car" class='floor'>
+            <option selected disabled>Сколько машин</option>
+            <option value="22500">на одну машину</option>
+            <option value="30000">на две машины</option>
+            <option value="39899">на три машины</option>
+          </select>
+        </div>
+      </div>
+      <div class="btn-calcs">
+        <button class="btn-calc calculate" id='calculate'>рассчитать</button>
+        <button class="btn-calc reset" id='reset'>сбросить</button>
+      </div>
+      <div class="sum-calc">
+
+        <div class="sum-calc-total">
+          <p>Примерная стоимость</p>
+          <div class="sum-calc-price">
+            <p></p>
+          </div>
+
+          <form id="form" class="form" enctype="multipart/form-data">
+            <h2 class='form-h2'>отправить просчет</h2>
+            <div class="feedback__input">
+              <p><input type="text" name="name" placeholder="Ваше имя" required></p>
+              <p><input type="tel" name="tel" placeholder="Ваш телефон" required></p>
+              <p><input type="email" name="email" maxlength="25" placeholder="Ваш email" required></p>
+              <p><textarea name="message" cols="20" rows="6" placeholder="Ваше сообщение"></textarea></p>
+              <p class='file-hide'>
+                <input type="checkbox" id="file-input-hide" class="file-input-hide">
+                <label class='label-file' for="file-input-hide"> <img src="img/todo.png" alt="смета"> <span>прикрепить смету</span></label>
+                <span class="file-show">
+                  <input type="file" name="file" class="file"></input>
+                </span>
+              </p>
+            </div>
+            <div class="feedback__sent">
+              <p>Ваше сообщение успешно отправлено<br>с вами свяжутся в ближайшее время</p>
+            </div>
+            <div class="feedback__error">
+              <p>Произошла ошибка<br>сообщение не отправлено</p>
+            </div>
+        
+            <div class="feedback__btn">
+              <button class="btn">Отправить</button>
+            </div>
+          </form>
+              
+        </div>
+        <div class="sum-calc-enter">
+          <p>Вы выбрали</p>
+          <div class="sum-calc-out"></div>
+        </div>
+        
+      </div>
+
+    </div>
+  </div>
+</div>
+
+  <script src="jquery-3.3.1.min.js"></script>
+  <script src="main.js"></script>
+</body>
+
+</html>
